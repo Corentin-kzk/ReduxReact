@@ -1,17 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Product from '../components/Product';
-import { useProducts } from '../services/Products';
+import { clearBasket } from '../redux/creators/basketCreator';
 
 function Basket() {
   const { firstname } = useSelector((state) => state.user);
   const { items } = useSelector((state) => state.basket);
-  console.log(items);
+  const dispatch = useDispatch();
+  const onClearBasket = () => {
+    dispatch(clearBasket());
+  };
   return (
     <div>
       <h2>Hi {firstname}</h2>
       <h3>There are {items.lenght} items in your basket</h3>
-      <button>Clear basket</button>
+      <button onClick={() => onClearBasket()}>Clear basket</button>
       <hr />
 
       <div className="basket-container">
