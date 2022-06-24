@@ -6,7 +6,8 @@ import { updateDarkmode } from '../redux/creators/uiCreator';
 function Banner() {
   const dispatch = useDispatch();
   const { darkMode } = useSelector((state) => state.ui);
-  const { firstname, lastname} = useSelector((state) => state.user);
+  const { firstname, lastname } = useSelector((state) => state.user);
+  const { items } = useSelector((state) => state.basket);
   //update darkmode
   const onUpdateDarkmode = () => {
     dispatch(updateDarkmode(!darkMode));
@@ -20,12 +21,15 @@ function Banner() {
 
       <div style={{ display: 'flex' }}>
         <div style={styles.menuItem}>
-          👱‍♂️ <Link to="/profile">{firstname} {lastname}</Link>
+          👱‍♂️{' '}
+          <Link to="/profile">
+            {firstname} {lastname}
+          </Link>
         </div>
         <div style={styles.menuItem}>
           🛒{' '}
           <Link to="/basket">
-            <strong>4</strong> items
+            <strong>{items.length}</strong> items
           </Link>
         </div>
         <div style={styles.menuItem}>

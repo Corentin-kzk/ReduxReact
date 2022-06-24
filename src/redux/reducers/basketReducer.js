@@ -1,17 +1,17 @@
-import { ADD_BASKET} from "../types/basketTypes";
+import { ADD_BASKET } from '../types/basketTypes';
 
 const initialState = {
-    product: []
-}
+  items: [],
+};
 
 const basketReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case ADD_BASKET:
-        return {...state, product : action.payload}
-      default:
-       return state;
-       
-    }
-  };
+  switch (action.type) {
+    case ADD_BASKET:
+      console.log(action.payload);
+      return { ...state, items: [...state.items, action.payload] };
+    default:
+      return state;
+  }
+};
 
 export default basketReducer;
